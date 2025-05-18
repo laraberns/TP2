@@ -6,22 +6,14 @@ namespace TP2.Pages
 {
     public class CreateCityModel : PageModel
     {
-        [BindProperty]
-        public CreateCity CreateCity
-        {
-            get; set;
-        }
 
-        public void OnGet()
-        {
-            CreateCity = new CreateCity();
-        }
-        public void OnPost()
+        public String CityName { get; set; }
+        public void OnPost(String cityName)
         {
 
-            if (!string.IsNullOrEmpty(CreateCity.CityName))
+            if (!string.IsNullOrEmpty(cityName))
             {
-                Console.WriteLine(CreateCity.CityName);
+                CityName = cityName;
             }
         }
     }

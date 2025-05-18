@@ -5,15 +5,16 @@
 }
 <form method="post">
 	<div class="form-group">
-		<label asp-for="CreateCity.CityName" class="control-label">Nome da cidade</label>
-		<input asp-for="CreateCity.CityName" class="form-control" />
-		<span asp-validation-for="CreateCity.CityName" class="text-danger"></span>
+		<label class="control-label">Nome da cidade</label>
+		<input name="cityName" class="form-control" />
 	</div>
 	<br />
 	<div class="form-group">
 		<input type="submit" value="Create" class="btn btn-primary" />
 	</div>
+
 </form>
+
 <div class="alert alert-success mt-3">
-	Cidade cadastrada: <strong>@Model.CreateCity.CityName</strong>
+	Cidade cadastrada: <strong>@Model.CityName</strong>
 </div>
