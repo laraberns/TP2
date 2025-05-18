@@ -1,0 +1,31 @@
+﻿@page
+@model TP2.Pages.CreateCountryModel
+@{
+	ViewData["Title"] = "Create Country";
+}
+
+<form method="post">
+	<div class="form-group">
+		<label asp-for="Input.CountryName" class="control-label">Nome do país</label>
+		<input asp-for="Input.CountryName" class="form-control" />
+		<span asp-validation-for="Input.CountryName" class="text-danger"></span>
+	</div>
+	<br />
+	<div class="form-group">
+		<label asp-for="Input.CountryCode" class="control-label">Código do país</label>
+		<input asp-for="Input.CountryCode" class="form-control" />
+		<span asp-validation-for="Input.CountryCode" class="text-danger"></span>
+	</div>
+	<br />
+	<div class="form-group">
+		<input type="submit" value="Create" class="btn btn-primary" />
+	</div>
+</form>
+
+@if (Model.Country != null)
+{
+	<div class="alert alert-success mt-3">
+		País cadastrado com sucesso: <strong>@Model.Country.CountryName</strong> (Código: <strong>@Model.Country.CountryCode</strong>)
+	</div>
+}
+
