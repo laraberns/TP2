@@ -31,10 +31,26 @@ namespace TP2.Pages
 
         public void OnPost()
         {
+            for (int i = 0; i < Countries.Count; i++)
+            {
+                var country = Countries[i];
+
+                if (!string.IsNullOrWhiteSpace(country.CountryName) &&
+                    !string.IsNullOrWhiteSpace(country.CountryCode))
+                {
+                    if (char.ToUpperInvariant(country.CountryName[0]) != char.ToUpperInvariant(country.CountryCode[0]))
+                    {
+                        ModelState.AddModelError($"Countries[{i}].CountryCode",
+                            "O código deve começar com a mesma letra do nome do país.");
+                    }
+                }
+            }
+
             if (!ModelState.IsValid)
             {
                 return;
             }
+
             SubmittedCountries = Countries
                 .Where(c => !string.IsNullOrWhiteSpace(c.CountryName) && !string.IsNullOrWhiteSpace(c.CountryCode))
                 .Select(c => new CreateCountry
@@ -43,5 +59,6 @@ namespace TP2.Pages
                     CountryCode = c.CountryCode
                 }).ToList();
         }
+
     }
 }
