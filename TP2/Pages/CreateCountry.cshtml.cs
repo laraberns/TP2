@@ -9,9 +9,9 @@ namespace TP2.Pages
     public class CreateCountryModel : PageModel
     {
         [BindProperty]
-        public InputModel Input { get; set; }
+        public List<InputModel> Countries { get; set; } = new();
 
-        public CreateCountry Country { get; set; }
+        public List<CreateCountry> SubmittedCountries { get; set; } = new();
 
         public class InputModel
         {
@@ -21,18 +21,27 @@ namespace TP2.Pages
             public string CountryCode { get; set; }
         }
 
+        public void OnGet()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                Countries.Add(new InputModel());
+            }
+        }
+
         public void OnPost()
         {
             if (!ModelState.IsValid)
             {
                 return;
             }
-
-            Country = new CreateCountry
-            {
-                CountryName = Input.CountryName,
-                CountryCode = Input.CountryCode
-            };
+            SubmittedCountries = Countries
+                .Where(c => !string.IsNullOrWhiteSpace(c.CountryName) && !string.IsNullOrWhiteSpace(c.CountryCode))
+                .Select(c => new CreateCountry
+                {
+                    CountryName = c.CountryName,
+                    CountryCode = c.CountryCode
+                }).ToList();
         }
     }
 }
