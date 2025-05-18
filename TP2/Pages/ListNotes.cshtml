@@ -1,0 +1,11 @@
+﻿@page
+@model TP2.Pages.ListNotesModel
+@{
+	ViewData["title"] = "List All Notes";
+}
+
+@foreach (var file in Model.ListAllNotes){
+	<li>
+		<a asp-page="/NoteDetails" asp-route-filePath="@file">@file</a>
+	</li>
+}

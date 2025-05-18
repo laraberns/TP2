@@ -19,7 +19,7 @@ namespace TP2.Pages
         {
             var timestamp = DateTime.Now.ToString("yyyyMMdd-HHmmss");
             FileName = $"note-{timestamp}.txt";
-            var filePath = Path.Combine("wwwroot", "files", FileName);
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "files", FileName);
 
             Directory.CreateDirectory(Path.GetDirectoryName(filePath)!);
 
